@@ -1,0 +1,24 @@
+
+:host ::ng-deep app-pokemon {
+  display: block;
+  height: 100%;
+  cursor: pointer !important;
+}
+
+.transition-effect {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  height: 100%;
+}
+
+.transition-effect:hover {
+  transform: translateY(-8px); 
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.transition-effect:hover ::ng-deep img {
+  transform: scale(1.15) rotate(2deg);
+  filter: drop-shadow(0 15px 25px rgba(255, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}

@@ -1,0 +1,53 @@
+<div class="modal-overlay" (click)="cerrar()">
+    <div class="modal-card shadow-lg animate__animated animate__fadeInUp" (click)="$event.stopPropagation()">
+        <div *ngIf="cargando" class="d-flex flex-column align-items-center justify-content-center p-5 min-vh-25">
+            <div class="spinner-grow text-warning" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <h5 class="mt-4 fw-bold text-muted">Consultando Pokédex...</h5>
+        </div>
+        <div *ngIf="!cargando && pokemon">
+            <div class="pokemon-img-container position-relative py-4 shadow-sm bg-light">
+                <span class="position-absolute top-0 end-0 m-3 badge bg-dark opacity-50">#{{ pokemon.id }}</span>
+                <img [src]="pokemon.caracteristicas.imagen" [alt]="pokemon.nombre"
+                    class="img-fluid d-block mx-auto animate__animated animate__zoomIn"
+                    style="max-height: 220px; filter: drop-shadow(0 10px 8px rgba(0,0,0,0.2));">
+            </div>
+            <div class="p-4">
+                <h2 class="text-center fw-bold text-uppercase mb-1 tracking-wider">{{ pokemon.nombre }}</h2>
+                <div class="mb-4 d-flex justify-content-center gap-2">
+                    <ng-container *ngIf="pokemon?.tipos">
+                        <span *ngFor="let tipo of pokemon.tipos"
+                            class="badge rounded-pill px-3 py-2 text-uppercase shadow-sm bg-primary">
+                            {{ tipo }}
+                        </span>
+                    </ng-container>
+                </div>
+                <div class="row g-0 mb-4 bg-light rounded-4 py-3">
+                    <div class="col-6 text-center border-end">
+                        <small class="text-secondary d-block fw-bold mb-1">PESO</small>
+                        <span class="h5 fw-bold text-dark">{{ pokemon.caracteristicas.peso / 10 }}
+                            <small>kg</small></span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <small class="text-secondary d-block fw-bold mb-1">ALTURA</small>
+                        <span class="h5 fw-bold text-dark">{{ pokemon.caracteristicas.altura / 10 }}
+                            <small>m</small></span>
+                    </div>
+                </div>
+                <div class="mb-4 px-2">
+                    <h6 class="fw-bold text-muted small border-bottom pb-2 mb-2">HABILIDADES PRINCIPALES</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span *ngFor="let hab of pokemon.habilidades"
+                            class="text-capitalize bg-white border rounded-3 px-2 py-1 small shadow-sm">
+                            {{ hab }}
+                        </span>
+                    </div>
+                </div>
+                <button class="btn btn-dark w-100 py-3 fw-bold rounded-pill shadow" (click)="cerrar()">
+                    VOLVER AL LISTADO
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
